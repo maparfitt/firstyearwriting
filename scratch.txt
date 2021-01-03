@@ -1,0 +1,41 @@
+Admin: Set up appointments:
+    How many appointments do you want to make?
+    How long should each be? (Displays: required number of office hours)
+    Group: Select start date/time. Select end time. (Displays: number of appointments made; number still required.)
+    Group (2). etc.
+Admin: Edit an appointment group.
+    Allows edit or delete of dates/times
+    Allows blocking out a time.
+User: Display available and unavailable appointments.
+    Select an appointment. Sends user a confirmation email with ics and google calendar files.
+    Change an appointment.
+
+
+So an appointment is a resource with a normal CRUD functionality.
+
+Carbon:
+$endTime = now()->diffInSeconds($startTime);
+$interval = CarbonInterval::make('2h 30m');
+$interval->add(15, 'minutes');
+$startTime->add(10, 'minutes');
+
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>Date Field Restrictions</h2>
+
+<p>Use the min and max attributes to add restrictions to dates:</p>
+
+<form action="/action_page.php">
+  <label for="datemax">Enter a date before 1980-01-01:</label>
+  <input type="date" id="datemax" name="datemax" max="1979-12-31"><br><br>
+
+  <label for="datemin">Enter a date after 2000-01-01:</label>
+  <input type="date" id="datemin" name="datemin" min="2000-01-02"><br><br>
+  
+  <input type="submit" value="Submit">
+</form>
+
+</body>
+</html>
