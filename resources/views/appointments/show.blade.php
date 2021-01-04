@@ -10,6 +10,8 @@
         http-equiv="X_UA-Compatible"
         content="ie=edge"
     >
+    <link href="/css/app.css" rel='stylesheet'>
+    
     <title>Appointment</title>
 </head>
 
