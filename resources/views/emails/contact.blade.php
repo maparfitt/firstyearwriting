@@ -1,4 +1,4 @@
-<!doctype html>
+<!-- <!doctype html> // html email
 <html lang-"en">
 <head>
     <meta charset="UTF-8">
@@ -17,4 +17,18 @@
     <h1>It works again!</h1>
     <p>It sounds like you want to make an {{ $topic }}.</p>
 </body>
-</html>
+</html> -->
+
+@component('mail::message')
+# Hello!
+This message is to confirm your appointment.
+Don't forget:
+- thing one
+- thing two 
+- and especially thing three
+
+@component('mail::button', ['url' => 'https://www.firstyearwriting.com'])
+    Visit firstyearwriting
+@endcomponent
+
+@endcomponent

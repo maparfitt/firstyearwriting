@@ -7,20 +7,18 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class Contact extends Mailable
+class Reminder extends Mailable
 {
     use Queueable, SerializesModels;
-
-    public $topic;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct(string $topic)
+    public function __construct()
     {
-        $this->topic = $topic;
+        //
     }
 
     /**
@@ -28,16 +26,8 @@ class Contact extends Mailable
      *
      * @return $this
      */
-/*   To send an email: 
     public function build()
     {
-        return $this->view('emails.contact')
-            ->subject('Information about ' . $this->topic);
-    } */
-
-    public function build()
-    {
-        return $this->markdown('emails.contact')
-            ->subject('Information about ' . $this->topic);
+        return $this->markdown('emails.reminder');
     }
 }
