@@ -36,7 +36,8 @@ class SignupsController extends Controller
      */
     public function store(Request $request)
     {
-        Notification::send(request()->user(), new SignupComplete());
+        //Notification::send(request()->user(), new SignupComplete()); // use this for notifying a collection of users.
+        request()->user()->notify(new SignupComplete(1000));
     }
 
     /**

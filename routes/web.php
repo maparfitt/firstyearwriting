@@ -29,4 +29,6 @@ Route::get('appointments/show', 'AppointmentsController@show')->name('appointmen
 Route::post('appointments/show', 'AppointmentsController@store')->name('appointments.store');
 
 Route::get('signups/create', 'SignupsController@create')->middleware('auth')->name('signups.create');
-Route::post('signups/create', 'SignupsController@store')->middleware('auth')->name('signups');
+Route::post('signups', 'SignupsController@store')->middleware('auth')->name('signups');
+
+Route::get('notifications', 'UserNotificationsController@show')->middleware('auth');

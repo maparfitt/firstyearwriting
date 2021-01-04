@@ -6,6 +6,7 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
+use App\Notifications\NexmoMessage;
 
 class SignupComplete extends Notification
 {
@@ -16,9 +17,9 @@ class SignupComplete extends Notification
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($amount)
     {
-        //
+        $this->amount = $amount;
     }
 
     /**
@@ -29,7 +30,7 @@ class SignupComplete extends Notification
      */
     public function via($notifiable)
     {
-        return ['mail'];
+        return ['mail', 'database', 'nexmo'];
     }
 
     /**
@@ -41,10 +42,16 @@ class SignupComplete extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
+                    ->subject('You have signed up')
                     ->greeting('Hi there!')
                     ->line('You are signed up at FirstYearWriting.')
                     ->action('Notification Action', url('/'))
                     ->line('Thank you for using our application!');
+    }
+
+    public function toNexmo($notifiable) {
+        return (new NexmoMessage())
+            ->content('You have signed up for FirstYearWriting.');
     }
 
     /**
@@ -56,7 +63,7 @@ class SignupComplete extends Notification
     public function toArray($notifiable)
     {
         return [
-            //
+            'amount' => $this->amount
         ];
     }
 }

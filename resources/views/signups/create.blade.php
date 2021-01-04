@@ -18,14 +18,17 @@
 <body class="bg-gray-100 flex items-center justify-center h-full">
     <form
         method="POST"
-        action=""
+        action="/signups"
         class="bg-white p-6 rounded shadow-md"
         style="width: 300px"
     >
 
+    @csrf
+
         <button
             type="submit"
             class="bg-blue-500 py-2 text-white rounded-full text-sm w-full"
+            formmethod="POST"
         >
         Sign me up
         </button>
