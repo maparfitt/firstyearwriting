@@ -6,7 +6,7 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
-use App\Notifications\NexmoMessage;
+use Illuminate\Notifications\Messages\NexmoMessage;
 
 class SignupComplete extends Notification
 {
@@ -31,6 +31,8 @@ class SignupComplete extends Notification
     public function via($notifiable)
     {
         return ['mail', 'database', 'nexmo'];
+        // in real life, not all three. User will have stated preferences on settings or contact-info page
+        // return ['database', 'mail', $notifiable->preferences['nexmo']] where preferences might be a JSON object.
     }
 
     /**

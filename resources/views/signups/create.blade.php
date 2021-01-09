@@ -1,21 +1,7 @@
-<!doctype html>
-<html lang-"en">
-<head>
-    <meta charset="UTF-8">
-    <meta
-        name="viewport"
-        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
-    >
-    <meta
-        http-equiv="X_UA-Compatible"
-        content="ie=edge"
-    >
-    <link href="/css/app.css" rel='stylesheet'>
-    
-    <title>Sign Up</title>
-</head>
+@extends('layouts.app')
 
-<body class="bg-gray-100 flex items-center justify-center h-full">
+@section('content')
+<div class="container">
     <form
         method="POST"
         action="/signups"
@@ -35,6 +21,5 @@
 
 
     </form>
-
-</body>
-</html>
+</div>
+@endsection
