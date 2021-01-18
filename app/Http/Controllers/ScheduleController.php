@@ -3,13 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Mail;
-use App\Mail\Contact;
-use App\Mail\Reminder;
-use App\Models\Appointment;
-use Carbon\Carbon;
+use App\Models\Schedule;
 
-class AppointmentsController extends Controller
+class ScheduleController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,8 +14,8 @@ class AppointmentsController extends Controller
      */
     public function index()
     {
-        $appointments = Appointment::all();
-        return view('appointments.index')->with('appointments', $appointments);
+        $schedule = Schedule::paginate(10);
+        return view('schedule.index')->with('schedule', $schedule);
     }
 
     /**
@@ -29,7 +25,7 @@ class AppointmentsController extends Controller
      */
     public function create()
     {
-        //
+        return view('schedule.create');
     }
 
     /**
@@ -40,12 +36,15 @@ class AppointmentsController extends Controller
      */
     public function store(Request $request)
     {
+        $schedule = new Schedule();
+        $schedule->startDate = $request['startDate'];
+        $schedule->startTime = $request['startTime'];
+        $schedule->endTime = $request['endTime'];
+        $schedule->length = $request['length'];
 
-        request()->validate(['email' => 'required|email']);
-        Mail::to(request('email'))
-            ->send(new Reminder('appointment'));
-        return redirect('appointments/show')
-            ->with('message', 'Email sent!'); // flash message stored in session for exactly one request.
+        $timeslots = makeTimeslots($schedule);
+        $timeslots->save;
+        return redirect('schedule/'. $timeslots);
     }
 
     /**
@@ -56,7 +55,7 @@ class AppointmentsController extends Controller
      */
     public function show($id)
     {
-        return view('appointments.show', ['appointment' => Appointment::findOrFail($id)]);
+        //
     }
 
     /**

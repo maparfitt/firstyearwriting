@@ -9,4 +9,6 @@ use App\Http\Controllers\AppointmentsController;
 class Appointment extends Model
 {
     use HasFactory;
+
+    protected $guarded = [];
 }

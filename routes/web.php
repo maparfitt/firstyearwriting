@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\AppointmentsController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -24,11 +24,18 @@ Route::get('/dashboard', function () {
 
 require __DIR__.'/auth.php';
 
-Route::get('appointments/create/{user}', 'AppointmentsController@create')->name('appointments.create');
+/* Route::get('appointments/create/{user}', 'AppointmentsController@create')->name('appointments.create');
 Route::get('appointments/show', 'AppointmentsController@show')->name('appointments.show');
-Route::post('appointments/show', 'AppointmentsController@store')->name('appointments.store');
+Route::post('appointments/show', 'AppointmentsController@store')->name('appointments.store'); */
+
+Route::resource('appointments', AppointmentsController::class);
+
+Route::resource('schedule', ScheduleController::class);
 
 Route::get('signups/create', 'SignupsController@create')->middleware('auth')->name('signups.create');
 Route::post('signups', 'SignupsController@store')->middleware('auth')->name('signups');
+
+Route::get('payments/create', 'PaymentsController@create')->middleware('auth')->name('payments.create');
+Route::post('payments', 'PaymentsController@store')->middleware('auth')->name('payments');
 
 Route::get('notifications', 'UserNotificationsController@show')->middleware('auth');
