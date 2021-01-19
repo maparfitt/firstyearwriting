@@ -4,12 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Http\Controllers\AppointmentsController;
 
-class Appointment extends Model
+class TimeslotGroup extends Model
 {
     use HasFactory;
-
-    protected $guarded =[];
-    
 }

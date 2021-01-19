@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Timeslot;
 use Carbon\Carbon;
 
-class ScheduleController extends Controller
+class TimeslotsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +15,8 @@ class ScheduleController extends Controller
      */
     public function index()
     {
-        $schedule = Schedule::paginate(10);
-        return view('schedule.index')->with('schedule', $schedule);
+        $timeslots = Timeslot::paginate(10);
+        return view('timeslots.index')->with('timeslots', $timeslots);
     }
 
     /**
@@ -26,7 +26,7 @@ class ScheduleController extends Controller
      */
     public function create()
     {
-        return view('schedule.create');
+        return view('timeslots.create');
     }
 
     /**
@@ -37,22 +37,21 @@ class ScheduleController extends Controller
      */
     public function store(Request $request)
     {
-        $officehours = new officehours();
-        $officehours->startDate = $request['startDate'];
-        $officehours->startTime = $request['startTime'];
-        $officehours->endTime = $request['endTime'];
-        $officehours->length = $request['length'];
+        $timeslotGroup = new TimeslotGroup();
+        $timeslotGroup->startDate = $request['startDate'];
+        $timeslotGroup->startTime = $request['startTime'];
+        $timeslotGroup->endTime = $request['endTime'];
+        $timeslotGroup->length = $request['length'];
 
-        $dt1 = Carbon::create($officehours->startDate . $officehours->startTime);
-        $dt2 = Carbon::create($officehours->startDate . $officehours->endTime);
+        $dt1 = Carbon::create($timeslotGroup->startDate . $timeslotGroup->startTime);
+        $dt2 = Carbon::create($timeslotGroup->startDate . $timeslotGroup->endTime);
 
-        for ($i = $dt1->timestamp; $i <=$dt2->timestamp; $i+=$officehours->length*60) {
-            $appointment = new Appointment(Carbon::createFromTimestamp($i));
-            $appointment->save();
+        for ($i = $dt1->timestamp; $i <=$dt2->timestamp; $i+=$timeslotGroup->length*60) {
+            $timeslot = new Timeslot(Carbon::createFromTimestamp($i));
+            $timeslot->save();
         }
-
-        return redirect('officehours');
-        // goes to officehours/index
+        return redirect('timeslots');
+        // goes to timeslots/index
     }
 
     /**
@@ -100,3 +99,4 @@ class ScheduleController extends Controller
         //
     }
 }
+

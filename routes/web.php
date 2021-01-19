@@ -24,13 +24,9 @@ Route::get('/dashboard', function () {
 
 require __DIR__.'/auth.php';
 
-/* Route::get('appointments/create/{user}', 'AppointmentsController@create')->name('appointments.create');
-Route::get('appointments/show', 'AppointmentsController@show')->name('appointments.show');
-Route::post('appointments/show', 'AppointmentsController@store')->name('appointments.store'); */
-
 Route::resource('appointments', AppointmentsController::class);
 
-Route::resource('schedule', ScheduleController::class);
+Route::resource('timeslots', TimeslotsController::class);
 
 Route::get('signups/create', 'SignupsController@create')->middleware('auth')->name('signups.create');
 Route::post('signups', 'SignupsController@store')->middleware('auth')->name('signups');
