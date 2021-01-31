@@ -20,4 +20,10 @@
             <input class="" type="submit" value="Submit">
         </form>
     </div>
+
+    <div id="app">
+        <quill-component></quill-component>
+    </div>
+<script src="{{ asset('js/app.js') }}"></script>
+
 @endsection

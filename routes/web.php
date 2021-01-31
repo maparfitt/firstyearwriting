@@ -2,7 +2,6 @@
 
 use Illuminate\Support\Facades\Route;
 
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -27,6 +26,8 @@ require __DIR__.'/auth.php';
 Route::resource('appointments', AppointmentsController::class);
 
 Route::resource('timeslots', TimeslotsController::class);
+
+Route::resource('students', StudentsController::class);
 
 Route::get('signups/create', 'SignupsController@create')->middleware('auth')->name('signups.create');
 Route::post('signups', 'SignupsController@store')->middleware('auth')->name('signups');
