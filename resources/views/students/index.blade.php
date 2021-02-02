@@ -28,6 +28,7 @@
                 </tr>
                 </thead>
                 <tbody class="bg-white divide-y divide-gray-200">
+                
                 <tr>
                     <td class="px-6 py-4 whitespace-nowrap">
                         <div class="text-sm text-gray-900">C6</div>
@@ -59,6 +60,7 @@
                     <a href="#" class="text-indigo-600 hover:text-indigo-900">View</a>
                     </td>
                 </tr>
+
                 </tbody>
             </table>
 

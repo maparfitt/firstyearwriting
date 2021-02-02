@@ -15,17 +15,17 @@ class StudentsImport implements ToModel
     public function model(array $row)
     {
         return new Student([
-            'Section' => $row[0],
-            'Last' => $row[1],
-            'First' => $row[2],
-            'Middle' => $row[3],
-            'Goesby' => $row[4],
-            'StudentID' => $row[5],
-            'Email' => $row[6],
-            'Lfa' => $row[7],
-            'Phone' => $row[8],
-            'Accommodations' => $row[9],
-            'Achieve' => $row[10],
+            'section' => $row[0],
+            'fname' => $row[1],
+            'lname' => $row[2],
+            'middle' => $row[3],
+            'goesBy' => $row[4],
+            'BUID' => $row[5],
+            'email' => $row[6],
+            'lfa' => $row[7],
+            'phone' => $row[8],
+            'accommodations' => $row[9],
+            'achieve' => $row[10],
         ]);
     }
 }
