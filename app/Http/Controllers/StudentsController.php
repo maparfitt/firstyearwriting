@@ -3,10 +3,20 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Imports\StudentsImport;
 use App\Models\Student;
+use Maatwebsite\Excel\Facades\Excel;
+
 
 class StudentsController extends Controller
-{
+{   
+    public function import()
+    {
+        Excel::import(new StudentsImport, 'MyList.xlsx');
+        return redirect('/')->with('success', 'All good!');
+
+    }
+
     public function index()
     {
         $students = Student::paginate(10);
