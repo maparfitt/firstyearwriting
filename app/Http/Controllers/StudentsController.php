@@ -47,7 +47,7 @@ class StudentsController extends Controller
      */
     public function show($id)
     {
-        
+        return view('students.show', ['student' => Student::findOrFail($id)]);
     }
 
     /**
